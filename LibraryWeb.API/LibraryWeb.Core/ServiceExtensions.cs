@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MediatR;
 using System.Reflection;
-using LibraryWeb.Contracts.Data;
+using FluentValidation;
 
 namespace LibraryWeb.Core
 {
@@ -19,7 +19,8 @@ namespace LibraryWeb.Core
            
             return services
                 .AddAutoMapper(Assembly.GetExecutingAssembly())
-                .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public static IServiceCollection AddSwaggerWithVersioning(this IServiceCollection services)

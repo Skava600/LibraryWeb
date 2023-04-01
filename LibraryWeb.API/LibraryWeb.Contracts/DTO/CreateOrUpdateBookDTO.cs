@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryWeb.Contracts.DTO
 {
-    internal class CreateOrUpdateBookDTO
+    public class CreateOrUpdateBookDTO
     {
         public string ISBN { get; set; }
         public string Name { get; set; }

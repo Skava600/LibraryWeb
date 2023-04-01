@@ -11,13 +11,14 @@ using System.Threading.Tasks;
 
 namespace LibraryWeb.Core.Handlers.Queries
 {
-
     public class GetAllBooksQuery : IRequest<IEnumerable<BookDTO>>
     {
+
     }
 
     public class GetAllBooksQueryHandler : IRequestHandler<GetAllBooksQuery, IEnumerable<BookDTO>>
     {
+
         private readonly IUnitOfWork _repository;
         private readonly IMapper _mapper;
         public GetAllBooksQueryHandler(IUnitOfWork repository, IMapper mapper)
