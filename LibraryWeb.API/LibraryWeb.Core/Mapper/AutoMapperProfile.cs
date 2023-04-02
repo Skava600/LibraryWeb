@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace LibraryWeb.Core.Mapper
 {
-    internal class AutoMapperProfile : Profile
+    public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
             CreateMap<Book, BookDTO>();
+            CreateMap<CreateOrUpdateBookDTO, Book>();    
         }
     }
 }

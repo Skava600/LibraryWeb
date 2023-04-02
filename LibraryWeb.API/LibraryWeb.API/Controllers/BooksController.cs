@@ -1,6 +1,8 @@
 ﻿using LibraryWeb.Contracts.Data.Entities;
 using LibraryWeb.Contracts.DTO;
+using LibraryWeb.Core.Handlers.Commands;
 using LibraryWeb.Core.Handlers.Queries;
+using LibraryWeb.Core.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -35,27 +37,85 @@ namespace LibraryWeb.API.Controllers
         [Route("{id}")]
         [ProducesResponseType(typeof(BookDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = new GetBookByIdQuery(id);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
         }
 
         // POST api/<BooksController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(typeof(BookDTO), (int)HttpStatusCode.Created)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> Post([FromBody] CreateOrUpdateBookDTO model)
         {
+            try
+            {
+                var command = new CreateBookCommand(model);
+                var response = await _mediator.Send(command);
+                return StatusCode((int)HttpStatusCode.Created, response);
+            }
+            catch (InvalidRequestBodyException ex)
+            {
+                return BadRequest(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = ex.Errors
+                });
+            }
         }
 
         // PUT api/<BooksController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(typeof(BookDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> Put(int id, [FromBody] CreateOrUpdateBookDTO model)
         {
+            try
+            {
+                var command = new UpdateBookCommand(model, id);
+                var response = await _mediator.Send(command);
+                return Ok(response);
+            }
+            catch (InvalidRequestBodyException ex)
+            {
+                return BadRequest(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = ex.Errors
+                });
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
         }
 
         // DELETE api/<BooksController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> Delete(int id)
         {
+            var command = new DeleteBookCommand(id);
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }

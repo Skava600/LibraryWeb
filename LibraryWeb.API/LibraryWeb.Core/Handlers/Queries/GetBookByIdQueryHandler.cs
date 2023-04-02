@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LibraryWeb.Contracts.Data;
 using LibraryWeb.Contracts.DTO;
+using LibraryWeb.Core.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -35,7 +36,7 @@ namespace LibraryWeb.Core.Handlers.Queries
             var book = await Task.FromResult(_repository.Books.Get(request.BookId));
             if (book == null)
             {
-                throw new ArgumentException($"No Item found for Id {request.BookId}");
+                throw new EntityNotFoundException($"No Item found for Id {request.BookId}");
             }
             
             var result = _mapper.Map<BookDTO>(book);

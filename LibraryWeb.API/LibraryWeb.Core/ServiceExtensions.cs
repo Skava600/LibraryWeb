@@ -16,11 +16,12 @@ namespace LibraryWeb.Core
         {
             services.Configure<JwtTokenConfig>(configuration.GetSection("JwtTokenConfig"))
                .AddSingleton(x => x.GetRequiredService<IOptions<JwtTokenConfig>>().Value);
-           
+
             return services
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddAutoMapper(Assembly.GetExecutingAssembly())
-                .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+                
         }
 
         public static IServiceCollection AddSwaggerWithVersioning(this IServiceCollection services)

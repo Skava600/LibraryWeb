@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using LibraryWeb.Contracts.Data;
+using LibraryWeb.Contracts.Data.Entities;
 using LibraryWeb.Contracts.DTO;
+using LibraryWeb.Core.Exceptions;
 using MediatR;
 
 namespace LibraryWeb.Core.Handlers.Commands
@@ -37,8 +39,19 @@ namespace LibraryWeb.Core.Handlers.Commands
 
             if (!result.IsValid)
             {
-
+                throw new InvalidRequestBodyException
+                {
+                    Errors = result.Errors.Select(e => e.ErrorMessage).ToArray()
+                };
             }
+
+            var entity = _mapper.Map<Book>(model);
+
+            _repo.Books.Add(entity);
+
+            await _repo.CommitAsync();
+
+            return _mapper.Map<BookDTO>(entity);
         }
     }
 }

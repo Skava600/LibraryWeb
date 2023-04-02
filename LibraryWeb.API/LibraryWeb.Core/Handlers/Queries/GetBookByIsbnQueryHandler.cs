@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LibraryWeb.Contracts.Data;
 using LibraryWeb.Contracts.DTO;
+using LibraryWeb.Core.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace LibraryWeb.Core.Handlers.Queries
             var book = await Task.FromResult(repo.Books.GetByIsbn(request.ISBN));
             if (book == null)
             {
-                throw new ArgumentException($"No Item found for ISBN {request.ISBN}");
+                throw new EntityNotFoundException($"No Item found for ISBN {request.ISBN}");
             }
 
             var result = mapper.Map<BookDTO>(book);
