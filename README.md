@@ -38,8 +38,5 @@ dotnet ef database update PersistedGrantDbContext
 dotnet ef database update ConfigurationDbContext
 ```
 ```
-dotnet ef database update PersistedGrantDbContext
-```
-```
 dotnet ef database update DatabaseContext
 ```
