@@ -3,11 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryWeb.Core.Options
 {
@@ -31,6 +26,25 @@ namespace LibraryWeb.Core.Options
             {
                 options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
             }
+
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.OAuth2,
+                Flows = new OpenApiOAuthFlows
+                {
+                    AuthorizationCode = new OpenApiOAuthFlow
+                    {
+                        AuthorizationUrl = new Uri("https://localhost:5000/connect/authorize"),
+                        TokenUrl = new Uri("https://localhost:5000/connect/token"),
+                        Scopes = new Dictionary<string, string>
+                        {
+                            {"LibraryWeb.Api", "Demo API - full access"}
+                        }
+                    }
+                }
+            });
+
+            options.OperationFilter<AuthorizeCheckOperationFilter>();
         }
 
         private OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
@@ -38,7 +52,7 @@ namespace LibraryWeb.Core.Options
             var info = new OpenApiInfo
             {
                 Title = $"LibraryWeb API V{description.ApiVersion}",
- 
+
                 Version = description.ApiVersion.ToString()
             };
 

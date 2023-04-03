@@ -1,23 +1,38 @@
-﻿using LibraryWeb.Core.Options;
+﻿using AutoMapper;
+using FluentValidation;
+using LibraryWeb.Core.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MediatR;
 using System.Reflection;
-using FluentValidation;
-using AutoMapper;
 
 namespace LibraryWeb.Core
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration) 
+        public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         {
+
+            services.AddAuthentication(conf =>
+            {
+                conf.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                conf.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:5000";
+                options.Audience = "LibraryWeb.Api";
+                options.RequireHttpsMetadata = false;
+            });
+
+
+
             return services
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-                
+
         }
 
         public static IServiceCollection AddSwaggerWithVersioning(this IServiceCollection services)

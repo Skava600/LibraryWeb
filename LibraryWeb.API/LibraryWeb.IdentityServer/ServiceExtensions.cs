@@ -1,21 +1,24 @@
 ﻿using LibraryWeb.Contracts.Data.Entities;
+using LibraryWeb.IdentityServer.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace LibraryWeb.Migrations
+namespace LibraryWeb.IdentityServer
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection AddIdentityServiceAuth(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIdentityServerAuth(this IServiceCollection services, IConfiguration configuration)
         {
+
             var migrationAssembly = Assembly.GetExecutingAssembly().GetName().Name;
             var connectionString = configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(connectionString));
             services.AddIdentity<User, IdentityRole>()
-               .AddEntityFrameworkStores<DatabaseContext>()
-               .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddIdentityServer()
                 .AddConfigurationStore(options => options.ConfigureDbContext = builder => builder.UseNpgsql(connectionString,
                 opt => opt.MigrationsAssembly(migrationAssembly)))
@@ -25,6 +28,7 @@ namespace LibraryWeb.Migrations
 
                 .AddAspNetIdentity<User>()
                 .AddDeveloperSigningCredential();
+            services.AddAuthentication();
             return services;
         }
     }
