@@ -13,6 +13,9 @@ In LibraryWeb.Api project
 ```bash
   dotnet run
 ```
+Log in credentials:
+login: AliceSmith@email.com
+pass: Pass123$
 
 If migrations are missing:
 
@@ -40,3 +43,4 @@ dotnet ef database update ConfigurationDbContext
 ```
 dotnet ef database update DatabaseContext
 ```
+
