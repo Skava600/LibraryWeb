@@ -1,7 +1,7 @@
-using LibraryWeb.Migrations;
 using LibraryWeb.Core;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using LibraryWeb.Infrastructure;
+using LibraryWeb.Migrations;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 var builder = WebApplication.CreateBuilder(args);
 

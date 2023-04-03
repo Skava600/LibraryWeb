@@ -1,20 +1,12 @@
-﻿using AutoMapper;
-using IdentityModel;
+﻿using IdentityModel;
 using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using LibraryWeb.Contracts.Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace LibraryWeb.Migrations
 {
@@ -23,7 +15,7 @@ namespace LibraryWeb.Migrations
         private readonly DatabaseContext _context;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public DbInitializer(DatabaseContext applicationDbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager) 
+        public DbInitializer(DatabaseContext applicationDbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = applicationDbContext;
             _userManager = userManager;
@@ -37,7 +29,7 @@ namespace LibraryWeb.Migrations
             PopulateIdentityServer(app);
             EnsureUsers();
 
-            if(!_context.Books.Any())
+            if (!_context.Books.Any())
             {
                 var book = new Book
                 {
@@ -49,7 +41,7 @@ namespace LibraryWeb.Migrations
                     DateIssued = new DateOnly(2022, 12, 1),
                     DateDue = new DateOnly(2023, 1, 26),
                 };
-                
+
 
                 await _context.Books.AddAsync(book);
                 await _context.SaveChangesAsync();
@@ -58,7 +50,7 @@ namespace LibraryWeb.Migrations
 
         private void EnsureUsers()
         {
-   
+
             var alice = _userManager.FindByNameAsync("alice").Result;
             if (alice == null)
             {

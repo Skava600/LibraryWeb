@@ -3,8 +3,6 @@ using LibraryWeb.Core.Exceptions;
 using LibraryWeb.Core.Handlers.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

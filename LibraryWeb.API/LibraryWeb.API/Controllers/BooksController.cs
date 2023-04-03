@@ -1,12 +1,11 @@
-﻿using LibraryWeb.Contracts.Data.Entities;
-using LibraryWeb.Contracts.DTO;
+﻿using LibraryWeb.Contracts.DTO;
+using LibraryWeb.Core.Exceptions;
 using LibraryWeb.Core.Handlers.Commands;
 using LibraryWeb.Core.Handlers.Queries;
-using LibraryWeb.Core.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

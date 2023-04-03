@@ -3,11 +3,6 @@ using LibraryWeb.Contracts.Data.Repositories;
 using LibraryWeb.Infrastructure.Data.Repositories.Base;
 using LibraryWeb.Migrations;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryWeb.Infrastructure.Data.Repositories
 {

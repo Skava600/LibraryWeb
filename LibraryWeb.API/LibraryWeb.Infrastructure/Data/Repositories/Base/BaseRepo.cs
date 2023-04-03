@@ -2,8 +2,6 @@
 using LibraryWeb.Contracts.Data.Repositories;
 using LibraryWeb.Migrations;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.Internal;
-using System.Collections.Generic;
 
 namespace LibraryWeb.Infrastructure.Data.Repositories.Base
 {
@@ -31,7 +29,7 @@ namespace LibraryWeb.Infrastructure.Data.Repositories.Base
             var entity = Get(id);
             if (entity != null)
             {
-                if (_context.Entry(entity).State == EntityState.Detached) 
+                if (_context.Entry(entity).State == EntityState.Detached)
                 {
                     _dbSet.Attach(entity);
                 }

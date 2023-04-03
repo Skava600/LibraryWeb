@@ -23,7 +23,7 @@ namespace LibraryWeb.Migrations
                 .AddOperationalStore(options => options.ConfigureDbContext = builder => builder.UseNpgsql(connectionString,
                 opt => opt.MigrationsAssembly(migrationAssembly)))
 
-                .AddAspNetIdentity<User>() 
+                .AddAspNetIdentity<User>()
                 .AddDeveloperSigningCredential();
             return services;
         }
