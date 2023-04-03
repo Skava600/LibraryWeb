@@ -14,7 +14,6 @@ namespace LibraryWeb.Infrastructure.Data
             _context = context;
         }
         public IBookRepository Books => new BookRepository(_context);
-        public IUserRepository Users => new UserRepository(_context);
 
 
         public async Task CommitAsync()

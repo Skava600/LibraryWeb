@@ -1,12 +1,11 @@
-﻿using LibraryWeb.Contracts.Config;
-using LibraryWeb.Core.Options;
+﻿using LibraryWeb.Core.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using MediatR;
 using System.Reflection;
 using FluentValidation;
+using AutoMapper;
 
 namespace LibraryWeb.Core
 {
@@ -14,9 +13,6 @@ namespace LibraryWeb.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration) 
         {
-            services.Configure<JwtTokenConfig>(configuration.GetSection("JwtTokenConfig"))
-               .AddSingleton(x => x.GetRequiredService<IOptions<JwtTokenConfig>>().Value);
-
             return services
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddAutoMapper(Assembly.GetExecutingAssembly())
@@ -42,19 +38,7 @@ namespace LibraryWeb.Core
             services.ConfigureOptions<ConfigureSwaggerOptions>()
                 .AddSwaggerGen(options =>
                 {
-                    // for further customization
-                    // options.OperationFilter<DefaultValuesFilter>();
                 });
-            return services;
-        }
-
-        public static IServiceCollection AddJwtBearerAuth(this IServiceCollection services) 
-        {
-
-            services.ConfigureOptions<ConfigureJwtBearerOptions>()
-                .AddAuthentication()
-                .AddJwtBearer();
-
             return services;
         }
     }

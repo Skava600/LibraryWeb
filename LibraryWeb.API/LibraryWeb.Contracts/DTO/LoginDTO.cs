@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace LibraryWeb.Contracts.DTO
 {
-    public class CreateOrUpdateUserDTO
+    public class LoginDTO
     {
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
+
     }
 }

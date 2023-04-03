@@ -15,6 +15,7 @@ namespace LibraryWeb.Core.Mapper
         {
             CreateMap<Book, BookDTO>();
             CreateMap<CreateOrUpdateBookDTO, Book>();    
+            CreateMap<User, UserDTO>();
         }
     }
 }

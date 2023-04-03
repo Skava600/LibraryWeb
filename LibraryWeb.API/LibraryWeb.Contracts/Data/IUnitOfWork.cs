@@ -10,7 +10,7 @@ namespace LibraryWeb.Contracts.Data
     public interface IUnitOfWork
     {
         IBookRepository Books { get; }
-        IUserRepository Users { get; }
+        //IUserRepository Users { get; }
         Task CommitAsync();
     }
 }

@@ -21,7 +21,7 @@ namespace LibraryWeb.Core.Validators
             RuleFor(x => x.DateIssued).LessThanOrEqualTo(DateOnly.FromDateTime(DateTime.Now))
                 .WithMessage("Date of taking must be earlier or equal to today");
 
-            RuleFor(x => x.ISBN).Matches(@"/^\d{13}$");
+            RuleFor(x => x.ISBN).Matches(@"^\d{13}$");
         }
     }
 }

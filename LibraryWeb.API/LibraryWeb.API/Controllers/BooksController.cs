@@ -6,6 +6,7 @@ using LibraryWeb.Core.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +15,7 @@ namespace LibraryWeb.API.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;

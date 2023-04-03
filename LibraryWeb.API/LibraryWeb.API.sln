@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33103.201
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWeb.API", "LibraryWeb.API\LibraryWeb.API.csproj", "{FD663E69-E902-41C7-BB02-51362AF01E8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWeb.API", "LibraryWeb.API\LibraryWeb.API.csproj", "{FD663E69-E902-41C7-BB02-51362AF01E8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application Core", "Application Core", "{BA69B714-C52F-445D-AFD4-684ACD948247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWeb.Core", "LibraryWeb.Core\LibraryWeb.Core.csproj", "{DD89485E-9AC0-4884-B908-F78E7518FF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWeb.Core", "LibraryWeb.Core\LibraryWeb.Core.csproj", "{DD89485E-9AC0-4884-B908-F78E7518FF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWeb.Contracts", "LibraryWeb.Contracts\LibraryWeb.Contracts.csproj", "{06D4F6B7-BAA5-41D3-95EB-36518F4A6F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWeb.Contracts", "LibraryWeb.Contracts\LibraryWeb.Contracts.csproj", "{06D4F6B7-BAA5-41D3-95EB-36518F4A6F1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B4ACC64D-202E-4E3F-B338-20144FE33A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWeb.Infrastructure", "LibraryWeb.Infrastructure\LibraryWeb.Infrastructure.csproj", "{C71B8B05-04AD-4BE7-9B3D-B10691CA481F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWeb.Infrastructure", "LibraryWeb.Infrastructure\LibraryWeb.Infrastructure.csproj", "{C71B8B05-04AD-4BE7-9B3D-B10691CA481F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWeb.Migrations", "LibraryWeb.Migrations\LibraryWeb.Migrations.csproj", "{D825F68A-4114-4614-BD6E-6FAFB2C107E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWeb.Migrations", "LibraryWeb.Migrations\LibraryWeb.Migrations.csproj", "{D825F68A-4114-4614-BD6E-6FAFB2C107E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

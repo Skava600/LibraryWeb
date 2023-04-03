@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryWeb.Contracts.DTO
 {
-    public class AuthTokenDTO
+    public class UserDTO
     {
-        public string AccessToken { get; set; }
-        public int ExpiresIn { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
     }
 }
