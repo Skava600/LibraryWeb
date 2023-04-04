@@ -39,7 +39,6 @@ namespace LibraryWeb.IdentityServer
 
                 AllowedGrantTypes = GrantTypes.Code,
                 RequirePkce = true,
-                RequireClientSecret = false,
 
                 RedirectUris = {"https://localhost:5001/swagger/oauth2-redirect.html"},
                 AllowedCorsOrigins = {"https://localhost:5001"},
