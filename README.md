@@ -20,4 +20,4 @@ get) runs on .Net Core using EF Core
 - Run LibraryWeb.IdentityServer
 - Run LibraryWeb.WebApi
 
-
+client_secret to authenticate: secret
