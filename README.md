@@ -4,43 +4,20 @@
 CRUD Web API to simulate a library (create, update, delete,
 get) runs on .Net Core using EF Core
 
-## Deployment
-Change connection string in appsettings.json to your value.
+## Built with
 
-To deploy this project run
+- .NET
+- Entity Framework Core
+- PostgreSQL
+- AutoMapper
+- IdentityServer4
+- Swagger
 
-In LibraryWeb.Api project 
-```bash
-  dotnet run
-```
-Log in credentials:
-login: AliceSmith@email.com
-pass: Pass123$
+## Getting Started
 
-If migrations are missing:
+- Git clone
+- Configure 'appsettings.json' files (connection string) both in LibraryWeb.Api and LibraryWeb.IdentityServer projects
+- Run LibraryWeb.IdentityServer
+- Run LibraryWeb.WebApi
 
-Run in LibraryWeb.Migrations
-
-```
-    dotnet ef migrations add InitialIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o Migrations/IdentityServer/PersistedGrantDb
-```
-
-```
-    dotnet ef migrations add InitialIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o Migrations/IdentityServer/PersistedGrantDb
-```
-
-```
-    dotnet ef migrations add init -c DatabaseContext
-```
-
-And update database
-```
-dotnet ef database update PersistedGrantDbContext
-```
-```
-dotnet ef database update ConfigurationDbContext
-```
-```
-dotnet ef database update DatabaseContext
-```
 
